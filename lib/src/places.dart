@@ -815,6 +815,7 @@ class PlacesAutocompleteResponse extends GoogleResponseStatus {
 class Prediction {
   final String description;
   final String id;
+  final Map json;
   final List<Term> terms;
 
   /// JSON place_id
@@ -835,7 +836,9 @@ class Prediction {
       this.reference,
       this.types,
       this.matchedSubstrings,
-      this.structuredFormatting);
+      this.structuredFormatting,
+      this.json,
+  );
 
   factory Prediction.fromJson(Map json) => json != null
       ? Prediction(
@@ -852,6 +855,7 @@ class Prediction {
           json['structured_formatting'] != null
               ? StructuredFormatting.fromJson(json['structured_formatting'])
               : null,
+          json
         )
       : null;
 }
